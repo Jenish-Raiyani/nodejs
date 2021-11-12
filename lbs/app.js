@@ -30,11 +30,19 @@ db.connect((error)=>{
     }
 
 });
+var session = require('express-session');
+ 
 
+app.use(session({
+  secret : 'ABCDefg',
+  resave : false,
+  saveUninitialized : true
+}));
 //routes
 
 app.use('/',require('./routes/pages'));
 app.use('/auth',require('./routes/auth'));
+app.use('/addbook',require('./routes/addbook'));
 
 /*
 app.get('/', (req,res)=>{

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Add Book</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+   <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+    <nav>
+        
+        
+    </nav>
+    {{#if message}}
+<h4 class="alert alert-danger mt-4">{{message}}</h4>
+{{/if}}
+    <div class="container mt-4">
+        <div class="card">
+            <div class="card-header">
+                Add Books
+            </div>
+
+            <div class="card-body">
+                <form action="/addbook/addbook" method="post">
+                    <div class="form-group">
+                        <label for="isbn">Book ISBN</label>
+                        <input type="text" class="form-control" id="isbn" name="isbn" placeholder="9788131510353">
+     
+                    </div>
+                     <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="title" class="form-control" id="title" name="title" placeholder="Java Programming">
+     
+                    </div>
+                     <div class="form-group">
+                        <label for="edition">Edition</label>
+                        <input type="text" class="form-control" id="edition" name="edition" placeholder=" 1st Edition, 2009
+">
+     
+                    </div>
+                    <div class="form-group">
+                        <label for="copies">Total Copies</label>
+                        <input type="number" class="form-control" id="copies" name="copies" placeholder="5">
+     
+                    </div>
+                    
+                     <div class="form-group">
+                        <label for="author">Authors</label>
+                        <input type="text" class="form-control" id="author" name="author">     
+                    </div>
+                     <div class="form-group">
+                        <label for="publisher">Publisher</label>
+                        <input type="text" class="form-control" id="publisher" name="publisher">     
+                    </div>
+                     <div class="form-group">
+                        <label for="publisher">Book url</label>
+                        <input type="text" class="form-control" id="url" name="url">     
+                    </div>
+                     
+
+
+  
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+
+    
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+</html>
