@@ -3,7 +3,7 @@
 <html lang="en">
     <head>        
         <!-- META SECTION -->
-        <title> Edit Book </title>
+        <title>Book Location</title>
         
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -12,7 +12,7 @@
       
         <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     
-        <link rel="stylesheet" href="/dashboardstyle.css">
+          <link rel="stylesheet" href="/dashboardstyle.css">
         <!-- END META SECTION -->
                         
         <!-- CSS INCLUDE -->        
@@ -47,18 +47,20 @@
             </li>
           
             <li>
-                <a href="/booklist" class="active">
+                <a href="/booklist" >
                   <i class='bx bx-book' ></i>
                   <span class="links_name">Book List</span>
                 </a>
             </li>
-             <li>
-                <a href="/booklocation">
+            
+           <li>
+                <a href="/booklocation" class="active">
                   <i class='bx bx-table' ></i>
                   <span class="links_name">Manage Book Location</span>
                 </a>
             </li>
-   
+           
+            
             
             <li class="log_out">
               <a href="/logout">
@@ -81,69 +83,96 @@
             <input type="text" placeholder="Search">
             <i class='bx bx-search' ></i>
           </div> --}}
-          {{!-- <div class="profile-details">
+           {{!-- <div class="profile-details">
             <!--<img src="images/profile.jpg" alt="">-->
-            <span class="admin_name">---</span>
+            <span class="admin_name"></span>
             <i class='bx bx-chevron-down' ></i>
-          </div> --}}
+             
+          </div>  --}}
+            <a href="/addbook" style="text-decoration: none; margin-top: 30px;" target="_blank">  <button class="first-button">Add Book</button></a>
+        
         </nav>
+        
     
         <div class="home-content" style="background-color: rgb(255, 255, 255);">
          
            
         <div class="container" >
-  {{#if message}}
+
+      {{#if message}}
 <div class="alert alert-success alert-dismissible">
   <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
   <strong>Success!</strong> {{message}}
 </div>
 {{/if}}
-          <div class="card-header">
-                Edit Book Details
-            </div>
+     
+            
+        <table class="table table-bordered"   width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                
+                <th>ISBN</th>
+                <th>Title</th>
+                <th>Authors</th>
+                <th>Add Location</th>
+                <th>Status</th>
+              
+            </tr>
+        </thead>
+ 
+        <tbody>
+         
+     
+       {{#each totalbook}}
 
-            <div class="card-body" >
-              <form action="/booklist/editbook/{{editData.id}}" method="POST">
+
+         {{#each ../Bookdata}} 
+       <form action="/booklocation/managelocation/{{this.id}}" method="POST" > 
+
+            <tr>
+              
+                <td><input type="text" value="{{this.ISBN}}"  name="isbn"></td>
+                <td><input type="text" value="{{this.Book_title}}"  name="title"></td>
+                <td><input type="text" value="{{this.Authors}}"  name="authors"></td>
+                 
+                <td>
+                  
                     <div class="form-group">
-                        <label for="isbn">Book ISBN</label>
-                        <input type="text" class="form-control" id="isbn" name="isbn" value="{{ editData.ISBN}}">
-     
-                    </div>
-                     <div class="form-group">
-                        <label for="title">Title</label>
-                        <input type="title" class="form-control" id="title" name="title" value="{{ editData.Book_title}}">
-     
-                    </div>
-                     <div class="form-group">
-                        <label for="edition">Edition</label>
-                        <input type="text" class="form-control" id="edition" name="edition" value="{{ editData.Edition}}">
-     
-                    </div>
-                    <div class="form-group">
-                        <label for="copies">Total Copies</label>
-                        <input type="number" class="form-control" id="copies" name="copies" value="{{ editData.Total_copies}}">
-     
-                    </div>
-                    
-                     <div class="form-group">
-                        <label for="author">Authors</label>
-                        <input type="text" class="form-control" id="author" name="author" value="{{ editData.Authors}}">     
-                    </div>
-                     <div class="form-group">
-                        <label for="publisher">Publisher</label>
-                        <input type="text" class="form-control" id="publisher" name="publisher" value="{{ editData.Publisher}}">     
-                    </div>
-                     <div class="form-group">
-                        <label for="publisher">Book url</label>
-                        <input type="text" class="form-control" id="url" name="url" value="{{ editData.url}}">     
-                    </div>
-                     
+                                                 
+                      <select class="form-control select" name="location" required>
+                          <option>T1 - S2</option>
+                          <option>T5 - S3</option>
+                          <option>T3 - S2</option>
 
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
+                      </select>
+                                               
+                    </div>
+                </td>
+         
+                  <td>
+                      <div class="form-group">
+                          <select class="form-control select" name="status" required>
+                              <option>Available</option>
+                              <option>Issued</option>
+                          </select>
+                    </div>
+                    </td>
+                  
+                    <td><button type="submit" class="btn btn-primary">Submit</button></td>
+               
 
-            </div>
-        </div>
+              </tr>
+           </form>    
+          {{/each}}
+         
+         {{/each}}
+
+
+            
+        </tbody>
+    </table>
+        
+       </div>
         </div>
         
       </section>
@@ -159,9 +188,7 @@
       sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
     }
      </script>
-    
-             
-                                   
+                             
                             
 
           <script>

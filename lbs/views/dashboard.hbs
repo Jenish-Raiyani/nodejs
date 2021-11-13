@@ -8,16 +8,11 @@
       <link rel="stylesheet" href="/dashboardstyle.css">
     <title>Dashboard</title>
 </head>
-<style>
-/* Googlefont Poppins CDN Link */
 
-</style>
 <body>
     <div class="sidebar">
         <div class="logo-details">
-          <!-- <i class='bx bxl-c-plus-plus'></i> -->
           <i class=''></i>
-
           <span class="logo_name">Library</span>
         </div>
           <ul class="nav-links">
@@ -27,27 +22,25 @@
                 <span class="links_name">Dashboard</span>
               </a>
             </li>
-          
             <li>
                 <a href="/booklist">
                   <i class='bx bx-book' ></i>
                   <span class="links_name">Book List</span>
                 </a>
             </li>
-            
-          
-           
-            
-            
+            <li>
+                <a href="/booklocation">
+                  <i class='bx bx-table' ></i>
+                  <span class="links_name">Manage Book Location</span>
+                </a>
+            </li>
+
             <li class="log_out">
-              <a href="/logout">
-                  
+              <a href="/logout">    
                 <i class='bx bx-log-out'></i>
                 <span class="links_name">Log out</span>
               </a>
             </li>
-
-            
           </ul>
       </div>
       <section class="home-section">
@@ -56,15 +49,7 @@
             <i class='bx bx-menu sidebarBtn'></i>
             <span class="dashboard">Dashboard</span>
           </div>
-          {{!-- <div class="search-box">
-            <input type="text" placeholder="Search">
-            <i class='bx bx-search' ></i>
-          </div> --}}
-          {{!-- <div class="profile-details">
-            <!--<img src="images/profile.jpg" alt="">-->
-            <span class="admin_name">---</span>
-            <i class='bx bx-chevron-down' ></i>
-          </div> --}}
+    
         </nav>
     
         <div class="home-content">
@@ -72,16 +57,14 @@
             <div class="box">
               <div class="right-side">
                 <div class="box-topic">Books</div>
-                <div class="number">5000+</div>
-                
+                <div class="number">5000+</div> 
               </div>
               <i class='bx bxs-book cart'></i>
             </div>
             <div class="box">
               <div class="right-side">
                 <div class="box-topic">Journals</div>
-                <div class="number">500+</div>
-                 
+                <div class="number">500+</div>    
               </div>
               <i class='bx bx-book-alt cart two'></i> 
             </div>
@@ -103,7 +86,7 @@
               <div class="sales-details">
              
      
-	<div id="top_x_div" style="width: 600px; height: 350px;margin-top: 30px;"></div>
+	              <div id="top_x_div" style="width: 600px; height: 350px;margin-top: 30px;"></div>
                 
            
               </div>
@@ -112,48 +95,27 @@
               </div> -->
             </div>
             <div class="top-sales box">
-              <div class="title" >Add Books</div>
-              <!-- <h4 style="color:rgb(12, 12, 151);font-size:20px;">This Feature is Coming Soon</h4> -->
-
-      
-                  
-        
-          <div class="content">
-            <br>
-              <a href="/addbook" style="text-decoration: none;" target="_blank">  <button class="first-button">Add Book</button></a>
-                     
-             
-         
-       
-         
-       
-      
-    
-       
-          
-       
-          
-            
-           
-         </div>
-         
-       
-               
-            </div>
+              <div class="title" >Add Books</div> 
+                <div class="content">
+                  <br>
+                  <a href="/addbook" style="text-decoration: none;" target="_blank">  <button class="first-button">Add Book</button></a>
+  
+                </div>
+              </div>
           </div>
         </div>
       </section>
     
       <script>
-       let sidebar = document.querySelector(".sidebar");
-    let sidebarBtn = document.querySelector(".sidebarBtn");
-    sidebarBtn.onclick = function() {
-      sidebar.classList.toggle("active");
-      if(sidebar.classList.contains("active")){
-      sidebarBtn.classList.replace("bx-menu" ,"bx-menu-alt-right");
-    }else
-      sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
-    }
+            let sidebar = document.querySelector(".sidebar");
+            let sidebarBtn = document.querySelector(".sidebarBtn");
+            sidebarBtn.onclick = function() {
+            sidebar.classList.toggle("active");
+            if(sidebar.classList.contains("active")){
+                  sidebarBtn.classList.replace("bx-menu" ,"bx-menu-alt-right");
+            }else
+              sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+            }
      </script>
     
     

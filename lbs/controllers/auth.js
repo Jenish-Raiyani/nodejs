@@ -16,7 +16,7 @@ db.connect((error)=>{
         console.log(error);
     }
     else{
-        console.log("Database Connected")
+       // console.log("Database Connected")
     }
 
 });
@@ -77,7 +77,10 @@ exports.login = (req, res)=>{
 
         if(results.length && bcrypt.compareSync(password,results[0].password)){
            req.session.email = email;
+
             res.redirect('/dashboard');
+            
+          
             return res.render('index',{
                 message: "Welcome , "+ req.email
             });

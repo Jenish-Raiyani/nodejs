@@ -18,14 +18,23 @@ db.connect((error)=>{
         console.log(error);
     }
     else{
-        console.log("Database Connected")
+        
     }
 
 });
 router.get('/',(req, res)=>{
+var ses = req.session.email;
 
 
-res.render('index', {message : 'Welcome, ' + req.session.email});
+if(typeof ses !== 'undefined'){
+  
+  res.render('index', {message : 'Welcome, ' + ses});
+}
+else{
+  res.render('index');
+
+}
+
 });
 
 router.get('/register',(req, res)=>{
@@ -52,8 +61,7 @@ router.get('/addbook',(req, res)=>{
 });
 
 
-module.exports= router;
-    
+
 
 
 
@@ -63,27 +71,18 @@ router.get('/booklist',(req, res)=>{
            if(error){
                console.log(error);
            }
-           else{
-               
-             
+           else{             
                return res.render('booklist',{
                  Bookdata: data
-             });
-              
-                 
+             });                               
            } 
-       });
-  
-    
+       });    
  } 
- 
-  
-  
-  
+   
  );
 
 
- router.get('/booklist/editbook/:id', function(req, res, next) {
+router.get('/booklist/editbook/:id', function(req, res, next) {
     var BookId= req.params.id;
     var sql=`SELECT * FROM books WHERE id=${BookId}`;
     db.query(sql, function (err, data) {
@@ -92,12 +91,12 @@ router.get('/booklist',(req, res)=>{
       return res.render('editbook', { title: 'Book List', editData: data[0]});
     });
 });
+
 router.post('/booklist/editbook/:id', function(req, res, next) {
-var id= req.params.id;
+  var id= req.params.id;
 
-const {isbn,title,edition,copies,author,publisher,url} = req.body;
-var updateData={isbn:isbn,	Book_title:title,Edition:edition,Total_copies:copies,Authors:author,Publisher:publisher,url:url}
-
+  const {isbn,title,edition,copies,author,publisher,url} = req.body;
+  var updateData={isbn:isbn,	Book_title:title,Edition:edition,Total_copies:copies,Authors:author,Publisher:publisher,url:url}
  
   var sql = `UPDATE books SET ? WHERE id= ?`;
   db.query(sql, [updateData, id], function (err, data) {
@@ -110,3 +109,36 @@ return res.render('editbook',{
     message: "Book Data Updated Successfully"
 });
 });
+
+router.get('/booklist/deletebook/:id', function(req, res, next) {
+  var id= req.params.id;
+    var sql = 'DELETE FROM books WHERE id = ?';
+    db.query(sql, [id], function (err, data) {
+    if (err) throw err;
+    console.log(data.affectedRows + " record(s) deleted");
+  });
+  res.redirect('/booklist');
+  
+});
+
+
+
+//Manage book location
+
+router.get('/booklocation',(req, res)=>{
+
+  db.query('SELECT * FROM books',(error,data)=>{
+         if(error){
+             console.log(error);
+         }
+         else{             
+             return res.render('booklocation',{
+               Bookdata: data
+           });                               
+         } 
+     });    
+} 
+ 
+);
+module.exports= router;
+    

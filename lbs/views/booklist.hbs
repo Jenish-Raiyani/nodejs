@@ -3,7 +3,7 @@
 <html lang="en">
     <head>        
         <!-- META SECTION -->
-        <title>ICT Portal</title>
+        <title>Book List</title>
         
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -53,7 +53,12 @@
                 </a>
             </li>
             
-          
+           <li>
+                <a href="/booklocation">
+                  <i class='bx bx-table' ></i>
+                  <span class="links_name">Manage Book Location</span>
+                </a>
+            </li>
            
             
             
@@ -78,12 +83,16 @@
             <input type="text" placeholder="Search">
             <i class='bx bx-search' ></i>
           </div> --}}
-          {{!-- <div class="profile-details">
+           {{!-- <div class="profile-details">
             <!--<img src="images/profile.jpg" alt="">-->
-            <span class="admin_name">---</span>
+            <span class="admin_name"></span>
             <i class='bx bx-chevron-down' ></i>
-          </div> --}}
+             
+          </div>  --}}
+            <a href="/addbook" style="text-decoration: none; margin-top: 30px;" target="_blank">  <button class="first-button">Add Book</button></a>
+        
         </nav>
+        
     
         <div class="home-content" style="background-color: rgb(255, 255, 255);">
          
@@ -103,10 +112,11 @@
                  <th>id</th>
                 <th>ISBN</th>
                 <th>Title</th>
-                <th>Edtion</th>
+                <th>Edition</th>
                 <th>Total Copies</th>
                 <th>Authors</th>
                 <th>Edit</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tfoot>
@@ -114,10 +124,11 @@
                <td>id</td>
                 <td>ISBN</td>
                 <td>Title</td>
-                <td>Edtion</td>
+                <td>Edition</td>
                 <td>Total Copies</td>
                 <td>Authors</td>
                 <td>Edit</td>
+                <td>Delete</td>
            
             </tr>
         </tfoot>
@@ -133,6 +144,7 @@
                 <td>{{this.Total_copies}}</td>
                 <td>{{this.Authors}}</td>
                 <td><a href="booklist/editbook/{{this.id}}" target="_blank">Edit</a></td>
+                <td><a href="booklist/deletebook/{{this.id}}">Delete</a></td>
 
             </tr>
         {{/each}}
