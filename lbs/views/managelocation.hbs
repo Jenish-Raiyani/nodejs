@@ -124,16 +124,20 @@
          
      
        {{#each totalbook}}
-
-
+       
+         
          {{#each ../Bookdata}} 
        <form action="/booklocation/managelocation/{{this.id}}" method="POST" > 
 
-            <tr>
-              
+            <tr >
+             
+
+              <td  style="display:none;"><input type="text" value="row{{this.id}}{{@../index}}"  name="rowid"></td>
                 <td><input type="text" value="{{this.ISBN}}"  name="isbn"></td>
                 <td><input type="text" value="{{this.Book_title}}"  name="title"></td>
                 <td><input type="text" value="{{this.Authors}}"  name="authors"></td>
+                <input type="hidden"   name="publisher" value="{{this.Publisher}}" >
+                   <input type="hidden" name="url" value="{{this.url}}" >
                  
                 <td>
                   
@@ -148,7 +152,7 @@
                                                
                     </div>
                 </td>
-         
+          
                   <td>
                       <div class="form-group">
                           <select class="form-control select" name="status" required>
@@ -157,10 +161,13 @@
                           </select>
                     </div>
                     </td>
-                  
-                    <td><button type="submit" class="btn btn-primary">Submit</button></td>
-               
+                  {{#if change}}
+                        <td><button type="submit" class="btn btn-primary">Update</button></td>
 
+                  {{else}}
+                        <td><button type="submit" class="btn btn-primary">Submit</button></td>
+                  {{/if}}
+                   
               </tr>
            </form>    
           {{/each}}
