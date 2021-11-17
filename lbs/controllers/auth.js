@@ -79,7 +79,7 @@ exports.login = (req, res)=>{
            req.session.email = email;
 
             res.redirect('/dashboard');
-            
+         
           
             return res.render('index',{
                 message: "Welcome , "+ req.email

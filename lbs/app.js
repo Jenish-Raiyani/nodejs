@@ -43,6 +43,7 @@ app.use(session({
 app.use('/',require('./routes/pages'));
 app.use('/auth',require('./routes/auth'));
 app.use('/addbook',require('./routes/addbook'));
+app.use('/',require('./routes/updatelocation'));
 app.use('/',require('./routes/managebook'));
 
 

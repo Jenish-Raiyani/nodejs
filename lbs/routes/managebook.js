@@ -24,40 +24,35 @@ db.connect((error)=>{
 
 });
 router.get('/booklocation/managelocation/:id',(req, res)=>{
+  
+  
    
     
     var BookId= req.params.id;
-    console.log(BookId);
     
-  
     var sql=`SELECT * FROM books WHERE id=${BookId}`;
-    db.query(sql, function (err, data) {
-      if (err) throw err;
-      Object.keys(data).forEach(function(key) {
-        var row = data[key];
-        totalbook=row.Total_copies;
-        
-      });
-      /*
-      var sqlq=`SELECT * FROM booklocation WHERE bookid=${BookId}`;
-          db.query(sqlq, function (err, blocation) {
+        db.query(sql, function (err, data) {
           if (err) throw err;
-            console.log(blocation);
-          //  return res.render('managelocation', { title: 'Book List',booklocation:blocation});
-         
+          //console.log(blocation)
+          Object.keys(data).forEach(function(key) {
+            var row = data[key];
            
-          callback();
-        });
-        db.end(); */
-       
-      var arr = [];
-      
-        for (var i = 1; i <= totalbook; i++) arr.push(""+i);
+            totalbook=row.Total_copies;
+            
+          });
         
-      console.log(arr);
-      return res.render('managelocation', { title: 'Book List', Bookdata: data ,totalbook:arr});
-      
-    });
+          
+           
+          var arr = [];
+          
+            for (var i = 1; i <= totalbook; i++) arr.push(""+i);
+            
+          
+          return res.render('managelocation', { title: 'Book List', Bookdata: data ,totalbook:arr});
+          
+        });
+
+
     
  });
 
@@ -90,6 +85,8 @@ router.get('/booklocation/managelocation/:id',(req, res)=>{
     var publisher = req.body.publisher;
     var url= req.body.url;
     var rowid=req.body.rowid;
+    var totalcopies=req.body.totalbook;
+    var bookno=req.body.bookno;
     
   //   console.log(status,location)
   db.query('SELECT rowid FROM booklocation WHERE rowid = ?', [rowid], async (error,result)=>{
@@ -98,20 +95,38 @@ router.get('/booklocation/managelocation/:id',(req, res)=>{
     }
    
     if( result.length > 0){
-      res.redirect(`/booklocation/managelocation/${BookId}`);
-       ;
+      res.send(`<script>
+     
+      window.location.href="/booklocation/managelocation/${BookId}";
+      alert("Location of book number ${bookno} is already exit");
+    
+      </script>`);
+      //res.redirect(`/booklocation/managelocation/${BookId}`);
+     // window.location.href = `http://mywebsite.com/home.html`;
+    
+      return res.render('managelocation',{
+        message: "Already Exit"
+        
+      });
     }
     else {
-      db.query('INSERT INTO booklocation SET ?',{rowid:rowid,bookid:BookId,ISBN:isbn,title:title,authors:authors,publisher:publisher,url:url,location:location,status:status},(error,results)=>{
+      db.query('INSERT INTO booklocation SET ?',{rowid:rowid,bookid:BookId,ISBN:isbn,title:title,totalcopies:totalcopies,authors:authors,publisher:publisher,url:url,location:location,status:status},(error,results)=>{
         if(error){
             console.log(error);
         }
         else{
-            res.redirect(`/booklocation/managelocation/${BookId}`);
+            //res.redirect(`/booklocation/managelocation/${BookId}`);
+            res.send(`<script>
+     
+                    window.location.href="/booklocation/managelocation/${BookId}";
+                    alert("Location Added Successfully For Book Number ${bookno}");
+    
+            </script>`);
+            
   
-            console.log("Location Added");
+            //console.log("Location Added");
             return res.render('managelocation',{
-              change: "welcome"
+              message: "Location Added Successfully"
             });
              
         } 

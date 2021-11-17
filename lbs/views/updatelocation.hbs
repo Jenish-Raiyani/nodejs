@@ -111,10 +111,10 @@
         <table class="table table-bordered"   width="100%" cellspacing="0"  id="tbBook">
         <thead>
             <tr>
-                <th>Book No</th> 
+                 
                 <th>ISBN</th>
                 <th>Title</th>
-                
+                <th>Authors</th>
                 <th>Add Location</th>
                 <th>Status</th>
               
@@ -124,32 +124,31 @@
         <tbody>
          
      
-       {{#each totalbook}}
+      
        
          
-         {{#each ../Bookdata}} 
-       <form action="/booklocation/managelocation/{{this.id}}" method="POST" id="myForm" > 
+         {{#each Bookdata}} 
+       <form action="/booklocation/updatelocation/{{this.bookid}}" method="POST" id="myForm" > 
 
             <tr >
              
-      <td  style="display:none;"><input type="text" value="{{@../index}}"  name="bookno"></td>
-              <td  style="display:none;"><input type="text" value="row{{this.id}}{{@../index}}"  name="rowid" ></td>
-                <td  style="display:none;"><input type="text" value="{{this.Total_copies}}"  name="totalbook"></td>
-                <td>{{@../index}}</td>
-                <td><input type="text" value="{{this.ISBN}}"  name="isbn"    readonly="true" ></td>
-                <td><input type="text" value="{{this.Book_title}}"  name="title"  readonly="true" ></td>
-                <td style="display:none;"><input type="text" value="{{this.Authors}}"  name="authors"></td>
-                <input type="hidden"   name="publisher" value="{{this.Publisher}}" >
-                   <input type="hidden" name="url" value="{{this.url}}" >
+      
+                 
+                <td><input type="text" value="{{this.ISBN}}"  name="isbn"   disabled></td>
+                <td><input type="text" value="{{this.title}}"  name="title" disabled></td>
+                <td  style="display:none;"><input type="text" value="{{this.rowid}}"  name="rowid"></td>
+                 
+              
+               
                  
                 <td>
                   
                     <div class="form-group">
                                                  
-                      <select class="form-control select" name="location" required>
-                          <option>T1 - S2</option>
-                          <option>T5 - S3</option>
-                          <option>T3 - S2</option>
+                      <select class="form-control select" name="location" value={{this.location}} required >
+                          <option value="T1 - S2"  > T1 - S2</option>
+                          <option value="T5 - S3">T5 - S3</option>
+                          <option value="T3 - S2">T3 - S2</option>
 
                       </select>
                                                
@@ -158,17 +157,17 @@
           
                   <td>
                       <div class="form-group">
-                          <select class="form-control select" name="status" >
-                              <option>Available</option>
-                              <option>Issued</option>
+                          <select class="form-control select" name="status" value={{this.status}} >
+                              <option value="Available">Available</option>
+                              <option value="Issued">Issued</option>
                           </select>
                     </div>
                     </td>
                   
                    
 
-                        <td><button type="submit" class="btn btn-primary btnDelete" >submit</button></td>
-                        <td><a href="/booklocation/updatelocation/{{this.id}}" style="text-decoration: none;" target="_blank">  Update </a></td>
+                        <td><button type="submit" class="btn btn-primary btnDelete" >Update</button></td>
+                        
 
 
    
@@ -178,7 +177,7 @@
 
           {{/each}}
          
-         {{/each}}
+          
 
    
        
