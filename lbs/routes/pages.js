@@ -40,6 +40,11 @@ else{
 router.get('/register',(req, res)=>{
     res.render('register');
 });
+
+router.get('/searchresult',(req, res)=>{
+  res.render('searchresult');
+});
+
 router.get('/login',(req, res)=>{
     res.render('login');
 });
@@ -47,6 +52,7 @@ router.get('/login',(req, res)=>{
 router.get('/dashboard',(req, res)=>{
   res.render('dashboard');
 });
+
 
 router.get('/logout', function(req, res, next){
     if(req.session.email){
@@ -138,7 +144,35 @@ router.get('/booklocation',(req, res)=>{
          } 
      });    
 } 
+
+
  
 );
+router.get('/bookdetails/:id', function(req, res, next) {
+  var id= req.params.id;
+  var sql = 'SELECT * FROM books WHERE id = ?';
+  db.query(sql, [id], async (err, data)=> {
+  if (err) throw err;
+     
+    var sqlqu = 'SELECT * FROM booklocation WHERE bookid = ?';
+    db.query(sqlqu, [id], function (err, booklocation) {
+      if (err) throw err;
+       
+        return res.render('bookdetails',{
+  location: booklocation, Bookdata:data
+  }); 
+
+              
+    
+});
+    
+});
+
+
+   
+ 
+  
+});
+
 module.exports= router;
     

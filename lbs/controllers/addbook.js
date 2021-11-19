@@ -48,7 +48,7 @@ exports.books = (req, res)=>{
  
 exports.getbooks = (req, res)=>{
     
-    console.log("Data")
+   
    
    
 

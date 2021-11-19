@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!-- Created By CodingNepal -->
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <title>Book List</title>
+      <link rel="stylesheet" href="style.css">
+      <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+      <link rel="stylesheet" href="/searchresult.css">
+   </head>
+   <body>
+      <div class="slider owl-carousel">
+           {{#each result}}
+         <div class="card">
+            {{!-- <div class="img">
+               <img src="#" alt="">
+            </div> --}}
+            <div class="content">
+               <div class="sub-title">
+                <b>Title : </b> {{this.Book_title}}
+               </div>
+               <br>
+               <div class="title">
+                 <b>Author : </b> {{this.Authors}}
+               </div>
+               <br>
+                <div class="title">
+                 <b>ISBN : </b> {{this.ISBN}}
+               </div>
+                
+               <div class="btn">
+                  <button><a href="/bookdetails/{{this.id}}" target="_blank">View Details</a></button>
+               </div>
+            </div>
+         </div>
+          {{/each}}
+          
+          
+        
+      </div>
+      
+   </body>
+</html>

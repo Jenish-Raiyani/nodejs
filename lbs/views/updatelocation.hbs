@@ -3,7 +3,7 @@
 <html lang="en">
     <head>        
         <!-- META SECTION -->
-        <title>Book Location</title>
+        <title>Update Location</title>
         
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -145,7 +145,8 @@
                   
                     <div class="form-group">
                                                  
-                      <select class="form-control select" name="location" value={{this.location}} required >
+                      <select class="form-control select" name="location"  required >
+                          <option value="{{this.location}}" hidden="hidden" selected="selected">{{this.location}}</option>
                           <option value="T1 - S2"  > T1 - S2</option>
                           <option value="T5 - S3">T5 - S3</option>
                           <option value="T3 - S2">T3 - S2</option>
@@ -157,7 +158,8 @@
           
                   <td>
                       <div class="form-group">
-                          <select class="form-control select" name="status" value={{this.status}} >
+                          <select class="form-control select" name="status"  >
+                             <option value="{{this.status}}" hidden="hidden" selected="selected">{{this.status}}</option>
                               <option value="Available">Available</option>
                               <option value="Issued">Issued</option>
                           </select>

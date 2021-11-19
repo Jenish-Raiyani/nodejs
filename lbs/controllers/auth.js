@@ -77,13 +77,21 @@ exports.login = (req, res)=>{
 
         if(results.length && bcrypt.compareSync(password,results[0].password)){
            req.session.email = email;
-
+           
             res.redirect('/dashboard');
          
           
             return res.render('index',{
                 message: "Welcome , "+ req.email
             });
+        }
+        else
+        {
+            
+            return res.render('login',{
+                message: "Email or Password Incurrect"
+            });
+
         }
     })
    

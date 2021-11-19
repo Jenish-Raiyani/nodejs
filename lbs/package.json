@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "circular-json": "^0.5.9",
     "cookie-parser": "^1.4.5",
     "dotenv": "^10.0.0",
     "ember-truth-helpers": "^3.0.0",
